@@ -43,7 +43,7 @@
       "required": true
     },
     "hostname": {
-      "description": "https://your-app-name.herokuapp.com",
+      "description": "https://uber-on-slack-softaims.herokuapp.com/",
       "required": true
     },
     "slack_oauth_url": {
@@ -52,7 +52,7 @@
     },
     "uber_callback_url": {
       "description": "Uber callback URL",
-      "value": "https://uberonslack.com/api/connect_uber"
+      "value": "https://uber-on-slack-softaims.herokuapp.com/api/connect_uber"
     },
     "uber_oauth_url": {
       "description": "Uber oauth URL",

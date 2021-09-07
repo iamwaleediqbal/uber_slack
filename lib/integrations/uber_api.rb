@@ -48,7 +48,7 @@ class UberAPI
     post_params = BASE_PARAMS.merge("code" => code)
 
     # post request to uber to trade code for user access token
-    resp = RestClient.post(ENV['uber_oauth_url'], post_params)
+    resp = RestClient.post("https://login.uber.com/oauth/v2/token", post_params)
     JSON.parse(resp.body)
   end
 
@@ -57,7 +57,7 @@ class UberAPI
     post_params = BASE_PARAMS.merge({ 'code' => code })
 
     # post request to uber to trade code for user access token
-    resp = RestClient.post(ENV['uber_oauth_url'], post_params)
+    resp = RestClient.post("https://login.uber.com/oauth/v2/token", post_params)
     response = JSON.parse(resp.body)
     if response["access_token"]
       auth = update_authorization(response)
