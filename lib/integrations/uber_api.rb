@@ -84,8 +84,7 @@ class UberAPI
   def self.get_ride_estimate(body, bearer_header)
     response = RestClient.post(
       "#{BASE_URL}/v1/requests/estimate",
-      {"start_place_id": "home",
-        "end_place_id": "work"},
+      body.to_json,
       authorization: bearer_header,
       "Content-Type" => :json,
       accept: :json
