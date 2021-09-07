@@ -119,7 +119,7 @@ class Api::AuthorizationsController < ApplicationController
   end
 
   def uber_first_auth_url
-    url = "#{ENV['uber_authorize_url']}?clientID=#{ENV['uber_client_id']}"
+    url = "#{ENV['uber_authorize_url']}#{ENV['uber_client_id']}"
     url += "&scope=request+surge_accept" unless ENV['hostname'].match("staging")
     url
   end
