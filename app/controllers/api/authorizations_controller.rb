@@ -119,8 +119,8 @@ class Api::AuthorizationsController < ApplicationController
   end
 
   def uber_first_auth_url
-    url = "#{ENV['uber_authorize_url']}?client_id=#{ENV['uber_client_id']}&redirect_uri=https://uber-on-slack-softaims.herokuapp.com/api/connect_uber"
-    url += "&scope=request+surge_accept" unless ENV['hostname'].match("staging")
+    url = "#{ENV['uber_authorize_url']}?client_id=#{ENV['uber_client_id']}&response_type=code&redirect_uri=https://uber-on-slack-softaims.herokuapp.com/api/connect_uber"
+    #url += "&scope=request+surge_accept" unless ENV['hostname'].match("staging")
     url
   end
 
