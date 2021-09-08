@@ -93,14 +93,14 @@ module UberCommandFormatters
   end
 
   def resolve_address(address)
-    # [lat,long] = address.split(',')
-    # latitude = lat[1,lat.length]
-    # longitude = long[0,lat.length-1]
+    
     location = Rails.cache.fetch("address: #{address}", expires_in: 1.day) do
        Geocoder.search(address).first
     end
-    
-    
+    [lat,long] = address.split(',')
+    latitude = lat[1,lat.length]
+    longitude = long[0,lat.length-1]
+    return [latitude,longitude]
     return [nil, nil] if location.blank?
     location = location.data["geometry"]["location"]
     [location['lat'], location['lng']]
