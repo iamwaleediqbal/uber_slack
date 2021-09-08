@@ -25,8 +25,8 @@ module UberCommandFormatters
 
     origin_name.sub!(/^from /, "")
 
-    #origin_name = origin_name.strip
-    #destination_name = destination_name.strip
+    origin_name = origin_name.strip
+    destination_name = destination_name.strip
 
     [origin_name, destination_name]
   end
@@ -93,11 +93,11 @@ module UberCommandFormatters
   end
 
   def resolve_address(address)
-    [lat,long] = address.split(',')
-    latitude = lat[1,lat.length]
-    longitude = long[0,lat.length-1]
+    # [lat,long] = address.split(',')
+    # latitude = lat[1,lat.length]
+    # longitude = long[0,lat.length-1]
     location = Rails.cache.fetch("address: #{address}", expires_in: 1.day) do
-       Geocoder.search([latitude.to_f,longitude.to_f]).first
+       Geocoder.search(address).first
     end
     
     
