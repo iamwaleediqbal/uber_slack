@@ -99,7 +99,7 @@ module UberCommandFormatters
     [lat,long] = address.split(',')
     latitude = lat[1,lat.length]
     longitude = long[0,lat.length-1]
-    return [latitude,longitude]
+    return [latitude.to_f,longitude.to_f]
     # return [nil, nil] if location.blank?
     # location = location.data["geometry"]["location"]
     # [location['lat'], location['lng']]
