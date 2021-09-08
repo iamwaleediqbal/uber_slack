@@ -64,7 +64,7 @@
     },
     "uber_base_url": {
       "description": "Uber base URL",
-      "value": "https://api.uber.com"
+      "value": "https://sandbox-api.uber.com"
     }
   },
   "image": "heroku/ruby",
