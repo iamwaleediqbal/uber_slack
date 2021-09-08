@@ -25,8 +25,8 @@ module UberCommandFormatters
 
     origin_name.sub!(/^from /, "")
 
-    origin_name = origin_name.strip
-    destination_name = destination_name.strip
+    #origin_name = origin_name.strip
+    #destination_name = destination_name.strip
 
     [origin_name, destination_name]
   end
