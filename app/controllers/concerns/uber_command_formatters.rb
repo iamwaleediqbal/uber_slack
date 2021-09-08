@@ -93,16 +93,17 @@ module UberCommandFormatters
   end
 
   def resolve_address(address)
-    # location = Rails.cache.fetch("address: #{address}", expires_in: 1.day) do
-    #   Geocoder.search(address).first
-    # end
     [lat,long] = address.split(',')
     latitude = lat[1,lat.length]
     longitude = long[0,lat.length-1]
-    return [latitude.to_f,longitude.to_f]
-    # return [nil, nil] if location.blank?
-    # location = location.data["geometry"]["location"]
-    # [location['lat'], location['lng']]
+    location = Rails.cache.fetch("address: #{address}", expires_in: 1.day) do
+       Geocoder.search([latitude.to_f,longitude.to_f]).first
+    end
+    
+    
+    return [nil, nil] if location.blank?
+    location = location.data["geometry"]["location"]
+    [location['lat'], location['lng']]
   end
 
   def bad_address_error(address)
