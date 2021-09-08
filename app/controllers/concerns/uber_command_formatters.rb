@@ -103,8 +103,9 @@ module UberCommandFormatters
     end
     
     return [nil, nil] if location.blank?
-    location = location.data["geometry"]["location"]
-    [location['lat'], location['lng']]
+    #location = location.data["geometry"]["location"]
+    #[location['lat'], location['lng']]
+    [latitude,longitude]
   end
 
   def bad_address_error(address)
