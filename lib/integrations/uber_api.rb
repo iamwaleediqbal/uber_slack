@@ -83,7 +83,7 @@ class UberAPI
 
   def self.get_ride_estimate(body, bearer_header)
     response = RestClient.post(
-      "#{BASE_URL}/v1.2/estimates",
+      "#{BASE_URL}/v1/requests/estimate",
       body.to_json,
       authorization: bearer_header,
       "Content-Type" => :json,
@@ -94,7 +94,7 @@ class UberAPI
   end
 
   def self.get_products_for_lat_lng(lat, lng, bearer_header)
-    uri = Addressable::URI.parse("#{BASE_URL}/v1.2/products")
+    uri = Addressable::URI.parse("#{BASE_URL}/v1/products")
     uri.query_values = { 'latitude' => lat, 'longitude' => lng }
     resource = uri.to_s
 
@@ -111,7 +111,7 @@ class UberAPI
   def self.cancel_ride(request_id, bearer_header)
     begin
       RestClient.delete(
-        "#{BASE_URL}/v1.2/requests/#{request_id}",
+        "#{BASE_URL}/v1/requests/#{request_id}",
         authorization: bearer_header,
         "Content-Type" => :json,
         accept: 'json'
@@ -132,7 +132,7 @@ class UberAPI
     }
     begin
       RestClient.post(
-        "#{BASE_URL}/v1.2/requests",
+        "#{BASE_URL}/v1/requests",
         body.to_json,
         authorization: bearer_header,
         "Content-Type" => :json,
@@ -146,7 +146,7 @@ class UberAPI
   def self.request_map_link(request_id, bearer_header)
     begin
       RestClient.get(
-        "#{BASE_URL}/v1.2/requests/#{request_id}/map",
+        "#{BASE_URL}/v1/requests/#{request_id}/map",
         authorization: bearer_header,
         "Content-Type" => :json,
         accept: 'json'
@@ -159,7 +159,7 @@ class UberAPI
 
   def self.get_ride_status(request_id, bearer_header)
     resp = RestClient.get(
-      "#{BASE_URL}/v1.2/requests/#{request_id}",
+      "#{BASE_URL}/v1/requests/#{request_id}",
       authorization: bearer_header,
       "Content-Type" => :json,
       accept: 'json'
