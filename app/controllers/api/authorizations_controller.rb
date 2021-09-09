@@ -135,14 +135,13 @@ class Api::AuthorizationsController < ApplicationController
 
     Authorization.find_by(session_token: session[:session_token]).tap do |auth|
       if(auth.nil?)
-        Authorization.create!(slack_user_id: params[:user_id], slack_response_url: params[:response_url])
-      else  
-        auth.update!(
-          uber_auth_token: access_token,
-          uber_refresh_token: refresh_token,
-          uber_access_token_expiration_time: Time.now + expires_in
-        )
+        auth = Authorization.create!(slack_user_id: params[:user_id], slack_response_url: params[:response_url])
       end
+      auth.update!(
+        uber_auth_token: access_token,
+        uber_refresh_token: refresh_token,
+        uber_access_token_expiration_time: Time.now + expires_in
+      )
     end
   end
 
