@@ -133,7 +133,7 @@ class Api::AuthorizationsController < ApplicationController
     refresh_token = response['refresh_token']
     expires_in = response['expires_in']
 
-    Authorization.find_by(session_token: session[:session_token]).tap do |auth|
+    Authorization.find_by(slack_user_id: params[:user_id]).tap do |auth|
       auth.update!(
         uber_auth_token: access_token,
         uber_refresh_token: refresh_token,
