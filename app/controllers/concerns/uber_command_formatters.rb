@@ -102,10 +102,10 @@ module UberCommandFormatters
        Geocoder.search([latitude,longitude]).first
     end
     
-    return [nil, nil] if location.blank?
+    #return [nil, nil] if location.blank?
     #location = location.data["geometry"]["location"]
     #[location['lat'], location['lng']]
-    [latitude,longitude]
+    return [latitude,longitude]
   end
 
   def bad_address_error(address)
